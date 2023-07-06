@@ -9,3 +9,15 @@
 
 # Novu NestJS Quickstart
 This sample demonstrates how to trigger notifications from a [NestJS](https://nestjs.com/) app using [Novu](https://novu.co).
+
+## Configuration
+
+### Create a free account in Novu
+
+1. Go to [Novu](https://web.novu.co) and click Sign Up.
+2. Use GitHub Account to login.
+
+
+### Obtain Credentials
+
+Your project needs to be configured with the API key from [your Novu dashboard](https://web.novu.co/settings).
