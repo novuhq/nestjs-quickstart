@@ -21,3 +21,19 @@ This sample demonstrates how to trigger notifications from a [NestJS](https://ne
 ### Obtain Credentials
 
 Your project needs to be configured with the API key from [your Novu dashboard](https://web.novu.co/settings).
+
+## Run the Quickstart
+
+Before continuing, please ensure you have [Node.js](https://nodejs.org/) installed and accessible from your shell.
+
+Next, use the following command to install the necessary dependencies:
+
+```sh
+npm install
+```
+
+Run the app in the terminal:
+
+```sh
+npm run start:dev
+```
