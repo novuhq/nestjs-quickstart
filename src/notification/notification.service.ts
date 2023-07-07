@@ -28,27 +28,4 @@ export class NotificationService {
 
     return result.data;
   }
-
-  async createTopic(key: string, name: string) {
-    const result = await this.novu.topics.create({
-      key,
-      name,
-    });
-
-    return result.data;
-  }
-
-  async sendToTopic(topicKey: string, email: string, description: string) {
-    const result = await this.novu.trigger('email-quickstart', {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore:
-      to: [{ type: 'Topic', topicKey: topicKey }],
-      payload: {
-        email: email,
-        description: description,
-      },
-    });
-
-    return result.data;
-  }
 }
