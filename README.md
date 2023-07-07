@@ -32,6 +32,11 @@ Next, use the following command to install the necessary dependencies:
 npm install
 ```
 
+Create `.env` file and paste your credentials
+```env
+NOVU_API_KEY='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+```
+
 Run the app in the terminal:
 
 ```sh
