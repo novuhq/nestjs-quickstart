@@ -28,4 +28,21 @@ export class NotificationService {
 
     return result.data;
   }
+
+  async createTopic(key: string, name: string) {
+    const result = await this.novu.topics.create({
+      key,
+      name,
+    });
+
+    return result.data;
+  }
+
+  async addSubscriber(key: string, subscriberId: string) {
+    const result = await this.novu.topics.addSubscribers(key, {
+      subscribers: [subscriberId],
+    });
+
+    return result.data;
+  }
 }
