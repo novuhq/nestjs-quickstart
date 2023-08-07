@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Novu } from '@novu/node';
+import { Novu, TriggerRecipientsTypeEnum } from '@novu/node';
 import { InjectNovu } from './novu.provider';
 
 @Injectable()
@@ -9,20 +9,24 @@ export class NotificationService {
     private readonly novu: Novu,
   ) {}
 
-  async sendEmail(email: string, description: string) {
-    await this.novu.subscribers.identify('123', {
-      email: email,
+  async createSubscriber(subscriberId: string, email: string) {
+    const result = await this.novu.subscribers.identify(subscriberId, {
+      email,
       firstName: 'Subscriber',
     });
 
+    return result.data;
+  }
+
+  async sendEmail(subscriberId: string, email: string, description: string) {
     const result = await this.novu.trigger('email-quickstart', {
       to: {
-        subscriberId: '123',
-        email: email,
+        subscriberId,
+        email,
       },
       payload: {
-        email: email,
-        description: description,
+        email,
+        description,
       },
     });
 
@@ -38,9 +42,18 @@ export class NotificationService {
     return result.data;
   }
 
-  async addSubscriber(key: string, subscriberId: string) {
+  async addTopicSubscriber(key: string, subscriberId: string) {
     const result = await this.novu.topics.addSubscribers(key, {
       subscribers: [subscriberId],
+    });
+
+    return result.data;
+  }
+
+  async sendTopicNotification(key: string, description: string) {
+    const result = await this.novu.trigger('email-quickstart', {
+      to: [{ type: TriggerRecipientsTypeEnum.TOPIC, topicKey: key }],
+      payload: { description },
     });
 
     return result.data;
