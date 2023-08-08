@@ -6,19 +6,19 @@ export class NotificationController {
   constructor(private readonly notificationService: NotificationService) {}
 
   @Post('subscribers')
-  createSubscriber(@Body() body: { subscriberId?: string; email: string }) {
+  createSubscriber(@Body() body: { subscriberId: string; email: string }) {
     return this.notificationService.createSubscriber(
-      body.subscriberId || '123',
+      body.subscriberId,
       body.email,
     );
   }
 
   @Post('emails')
   sendEmail(
-    @Body() body: { subscriberId?: string; email: string; description: string },
+    @Body() body: { subscriberId: string; email: string; description: string },
   ) {
     return this.notificationService.sendEmail(
-      body.subscriberId || '123',
+      body.subscriberId,
       body.email,
       body.description,
     );
